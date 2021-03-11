@@ -41,11 +41,16 @@ class EntryServiceTest extends KernelTestCase
         $this->assertEquals(1, $this->service->getCount($user));*/
     }
 
-    public function testParseEntryFolder()
+    public function testStoreEntry()
     {
-        $entry = $this->service->parseEntryFolder("0121-wallpapers-gaming keyboard", '2020');
+        $entry = $this->service->storeEntry("0121-wallpapers-gaming keyboard", '2020');
         $this->assertEquals('gaming keyboard', $entry->getName());
         //$entry = $this->service->parseEntryFolder(" 02-gaming-wallpapers")
+    }
+
+    public function testStoreEntryInvalidName()
+    {
+        $this->assertNull($this->service->storeEntry('0121-cool entry', '2020'));
     }
 
 }
